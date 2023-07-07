@@ -8,4 +8,6 @@ router.post('/add_manufacturer', ManufacturerController.post)
 router.patch('/update_manufacturer', ManufacturerController.patch)
 router.delete('/delete_manufacturer', ManufacturerController.delete)
 
+router.get('/get_manufacturer_usernames', ManufacturerController.getUsernames)
+
 export default router;

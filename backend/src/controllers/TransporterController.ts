@@ -1,10 +1,15 @@
+import transporter from "../models/transporter.js";
+
 export default {
 
-    get : (req: any, res: any) => {
-        res.send('Hello There');
+    get : async (req: any, res: any) => {
+        const data= await transporter.authenticateTransporters(req.headers['username'], req.headers['password']);
+        console.log('controller data:: ',data)
+        res.json(data);
     },
 
-    post : (req: any, res: any) => {
+    post : async (req: any, res: any) => {
+        console.log(await transporter.addNewTransporter(req.body));
         res.send('Hello there')
     },
 
@@ -14,6 +19,10 @@ export default {
 
     delete : (req: any, res: any) => {
         
+    },
+
+    getUsernames: async (req: any, res: any) => {
+        res.send(await transporter.getTransporterNames());
     }
     
 };
