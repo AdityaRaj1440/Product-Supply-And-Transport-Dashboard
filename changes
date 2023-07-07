@@ -1,0 +1,66 @@
+In package.json:
+    added:
+        "type": "module"
+    update "scripts" to build ts files for conversion to js files:
+        "build": "tsc"
+
+In terminal:
+    install:
+        npm install typescript --save-dev
+
+In MySQL Client:
+    to create a database:
+        create database threeway_studio;
+        use threeway_studio;
+    
+    to create Manufacturer Table:
+        create table manufacturer(
+            m_id int auto_increment primary key,
+            name varchar(70),
+            address varchar(1000),
+            username varchar(50),
+            password varchar(100));
+
+    to create Transporter Table:
+        create table transporter(
+            t_id int auto_increment primary key,
+            name varchar(70),
+            username varchar(50),
+            password varchar(100));
+
+    to create Orders Table:
+        create table orders(
+            id int auto_increment primary key,
+            o_id varchar(10),
+            from_address varchar(1000),
+            to_address varchar(1000),
+            qty double,
+            pickup varchar(1000),
+            m_id int,
+            t_id int,
+            price double,
+            foreign key(m_id) references manufacturer(m_id),
+            foreign key(t_id) references transporter(t_id));
+
+    to create Chats Table:
+        create table chats(
+            c_id int auto_increment primary key,
+            message varchar(1000),
+            o_id int,
+            foreign key(o_id) references orders(id));
+
+    to create a trigger to autopopulate unique o_id:
+        DELIMITER //
+        CREATE TRIGGER populate_order_code
+        BEFORE INSERT ON orders
+        FOR EACH ROW
+        BEGIN
+        DECLARE next_id INT;
+        SET next_id = (SELECT AUTO_INCREMENT
+                        FROM information_schema.TABLES
+                        WHERE TABLE_SCHEMA = DATABASE()
+                        AND TABLE_NAME = 'orders');
+
+        SET NEW.o_id = CONCAT('OID', LPAD(next_id, 3, '0'));
+        END //
+        DELIMITER ;
