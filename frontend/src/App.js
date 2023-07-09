@@ -4,6 +4,8 @@ import UserCategory from './components/UserCategory'
 import ManufacturerDashboard from "./components/ManufacturerDashboard"
 import TransporterDashboard from "./components/TransporterDashboard"
 
+import './App.css'
+
 
 const App = () => {
   return (

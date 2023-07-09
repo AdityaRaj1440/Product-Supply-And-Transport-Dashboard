@@ -13,7 +13,7 @@ export default {
         res.json({ "res": "testing" });
     },
     getAllOrders: async (req, res) => {
-        const result = await order.getOrders(req.headers['t_id']);
+        const result = await order.getOrders(req.headers['type'], req.headers['id']);
         console.log(result);
         res.json(result);
     },

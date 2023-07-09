@@ -2,8 +2,8 @@ import database from '../config/database.js';
 import { promisify } from 'util';
 const promisedConn = promisify(database.query).bind(database);
 export default {
-    getOrders: async (t_id) => {
-        let query = `Select * from orders where t_id= ${t_id};`;
+    getOrders: async (type, id) => {
+        let query = `Select * from orders where ${type}= ${id};`;
         return await promisedConn(query);
     },
     addOrder: async (body) => {

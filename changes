@@ -18,14 +18,14 @@ In MySQL Client:
             m_id int auto_increment primary key,
             name varchar(70),
             address varchar(1000),
-            username varchar(50),
+            username varchar(50) unique,
             password varchar(100));
 
     to create Transporter Table:
         create table transporter(
             t_id int auto_increment primary key,
             name varchar(70),
-            username varchar(50),
+            username varchar(50) unique,
             password varchar(100));
 
     to create Orders Table:
@@ -47,20 +47,6 @@ In MySQL Client:
             c_id int auto_increment primary key,
             message varchar(1000),
             o_id int,
+            sender_category varchar(20),
             foreign key(o_id) references orders(id));
 
-    to create a trigger to autopopulate unique o_id:
-        DELIMITER //
-        CREATE TRIGGER populate_order_code
-        BEFORE INSERT ON orders
-        FOR EACH ROW
-        BEGIN
-        DECLARE next_id INT;
-        SET next_id = (SELECT AUTO_INCREMENT
-                        FROM information_schema.TABLES
-                        WHERE TABLE_SCHEMA = DATABASE()
-                        AND TABLE_NAME = 'orders');
-
-        SET NEW.o_id = CONCAT('OID', LPAD(next_id, 3, '0'));
-        END //
-        DELIMITER ;

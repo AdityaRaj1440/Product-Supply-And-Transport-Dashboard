@@ -25,7 +25,7 @@ const UserCategory= () => {
       <div class="card-group">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">MANUFACTURER</h5>
+            <h3 class="card-title">MANUFACTURER</h3>
             <p class="card-text">Develop products and supplies it to the market.</p>
             <p class="card-text"><small class="text-body-secondary">Number of Manufacturers= {counts[0]}</small></p>
           </div>
@@ -33,11 +33,11 @@ const UserCategory= () => {
         </div>
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">TRANSPORTER</h5>
+            <h3 class="card-title">TRANSPORTER</h3>
             <p class="card-text">Transport and distribute products between manufacturers and customers.</p>
             <p class="card-text"><small class="text-body-secondary">Number of Transporters= {counts[1]}</small></p>
           </div>
-          <button onClick= {(e)=> setCategory('transporter')}>Click to join as a Manufacturer</button>
+          <button onClick= {(e)=> setCategory('transporter')}>Click to join as a Transporter</button>
         </div>
       </div>
       {category!==""?<UserForm category={category}/>:<></>}

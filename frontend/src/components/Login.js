@@ -54,7 +54,8 @@ const Login = ({category}) => {
                     </span>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary authButton">Submit</button>
+            <button class="btn btn-primary authButton" onClick= {e=> window.location.reload()}>Cancel</button>
         </form>
     </div>
     )

@@ -19,8 +19,8 @@ const OrderForm= ({state}) => {
     axios.get('http://localhost:3005/transporter/get-transporter-names').then(response=> {
         setList(response.data)
     })
-    console.log("data::",newOrderId, state, list)
-    console.log("t-id::",selectedOption)
+    // console.log("data::",newOrderId, state, list)
+    // console.log("t-id::",selectedOption)
 
     const createOrder = (e) => {
         e.preventDefault()

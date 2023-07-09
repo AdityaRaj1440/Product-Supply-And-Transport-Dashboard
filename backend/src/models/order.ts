@@ -5,8 +5,8 @@ const promisedConn= promisify(database.query).bind(database);
 
 export default {
 
-    getOrders: async (t_id: number) => {
-        let query= `Select * from orders where t_id= ${t_id};`
+    getOrders: async (type: string, id: number) => {
+        let query= `Select * from orders where ${type}= ${id};`
         return await promisedConn(query);
     },
 
