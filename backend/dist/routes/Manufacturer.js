@@ -1,10 +1,11 @@
 import express from 'express';
 import ManufacturerController from '../controllers/ManufacturerController.js';
 const router = express.Router();
-router.get('/get_manufacturer', ManufacturerController.get);
-router.post('/add_manufacturer', ManufacturerController.post);
-router.patch('/update_manufacturer', ManufacturerController.patch);
-router.delete('/delete_manufacturer', ManufacturerController.delete);
-router.get('/get_manufacturer_usernames', ManufacturerController.getUsernames);
+router.get('/', ManufacturerController.getCount);
+router.get('/get-manufacturer', ManufacturerController.get);
+router.post('/add-manufacturer', ManufacturerController.post);
+router.patch('/update-manufacturer', ManufacturerController.patch);
+router.delete('/delete-manufacturer', ManufacturerController.delete);
+router.get('/get-manufacturer-usernames', ManufacturerController.getUsernames);
 export default router;
 //# sourceMappingURL=Manufacturer.js.map

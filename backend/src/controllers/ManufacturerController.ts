@@ -1,4 +1,5 @@
 import manufacturer from "../models/manufacturer.js";
+import order from "../models/order.js";
 
 export default {
 
@@ -23,6 +24,10 @@ export default {
 
     getUsernames: async (req: any, res: any) => {
         res.send(await manufacturer.getManufacturerNames());
-    }
+    },
     
+    getCount: async (req: any, res: any) => {
+        const countList= await manufacturer.findCount();
+        res.send([countList[0][0]['count(*)'],countList[1][0]['count(*)']])
+    }
 };

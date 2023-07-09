@@ -3,11 +3,11 @@ import { promisify } from 'util';
 const promisedConn = promisify(database.query).bind(database);
 export default {
     getTransporterNames: async () => {
-        let query = `select username from transporter;`;
+        let query = `select t_id, name from transporter;`;
         return await promisedConn(query);
     },
     authenticateTransporters: async (username, password) => {
-        let query = `select m_id, name, username from transporter where username= ${username} and password= SHA1(${password});`;
+        let query = `select t_id, name, username from transporter where username= "${username}" and password= SHA1("${password}");`;
         console.log(query);
         return await promisedConn(query);
     },

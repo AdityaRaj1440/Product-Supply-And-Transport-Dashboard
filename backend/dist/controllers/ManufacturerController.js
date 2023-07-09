@@ -16,6 +16,10 @@ export default {
     },
     getUsernames: async (req, res) => {
         res.send(await manufacturer.getManufacturerNames());
+    },
+    getCount: async (req, res) => {
+        const countList = await manufacturer.findCount();
+        res.send([countList[0][0]['count(*)'], countList[1][0]['count(*)']]);
     }
 };
 //# sourceMappingURL=ManufacturerController.js.map
