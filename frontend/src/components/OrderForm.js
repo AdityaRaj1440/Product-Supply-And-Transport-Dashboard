@@ -33,9 +33,17 @@ const OrderForm= ({state}) => {
             "m_id": state['m_id'],
             "t_id": selectedOption
         }
+        const orderMessage= "Hello. This is "+state.name+". I would like to request your services for the following order:-\nOrder ID: "+orderDetails.o_id+"\n Pickup Address: "+orderDetails.pickup+"\nFrom: "+orderDetails.from_address+"\nTo: "+orderDetails.to_address+"\n Quantity: "+orderDetails.qty;
+        const chatBody= {
+            "message": orderMessage,
+            "o_id": newOrderId,
+            "sender_category": "manufacturer"
+        }
         console.log(orderDetails)
         axios.post('http://localhost:3005/orders/add-order', orderDetails).then(response=> {
             console.log("Order Added")
+            axios.post('http://localhost:3005/chats/add-chat', chatBody).then(resp=> {
+            })
             window.location.reload()
         })
     }

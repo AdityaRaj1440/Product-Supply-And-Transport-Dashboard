@@ -18,9 +18,14 @@ const Login = ({category}) => {
         axios.get('http://localhost:3005/'+route, config).then(response=> {
             console.log("hello: ",response)
             if(response.data.length>0){
+                alert("Login Successful!")
                 navigate("/"+category+"/dashboard", {replace: true, state: response.data[0]})
             }
+            else{
+                alert('Login Failed. Please use correct username and password')
+            }
         }).catch(error=> {
+            alert('Login Failed. Please use correct username and password')
             console.log("hello failure")
         })
     }
